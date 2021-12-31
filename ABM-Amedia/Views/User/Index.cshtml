@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ABM_Amedia.Models.Users>
+
+@{
+    ViewData["Title"] = "Lista de Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bienvenido usuario administrador</h2>
+<div class="container">
+        @if (TempData["message"] != null)
+        {
+           <div class="alert alert-warning alert-dismissible fade show" role="alert">
+               @TempData["message"]
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+               </button>
+           </div>
+        }
+
+      <div class="row">
+          <div class="col-sm-6">
+              <h3>Lista de usuarios</h3>
+          </div>
+          <div class="col-sm-6">
+              <a class="btn btn-success d-block" asp-action="Create" asp-controller="User">Agregar Usuario</a>
+          </div>
+      </div>
+
+       <div class="row">
+           @if(Model.Count() > 0)
+            {
+               <table class="table table-bordered table-striped">
+                   <thead>
+                       <tr>
+                           <td>@Html.DisplayNameFor(x => x.cod_usuario)</td>
+                           <td>@Html.DisplayNameFor(x => x.txt_user)</td>
+                           <td>@Html.DisplayNameFor(x => x.txt_nombre)</td>
+                           <td>@Html.DisplayNameFor(x => x.txt_apellido)</td>
+                           <td>@Html.DisplayNameFor(x => x.nro_doc)</td>
+                           <td>@Html.DisplayNameFor(x => x.cod_rol)</td>
+                           <td>@Html.DisplayNameFor(x => x.sn_activo)</td>
+                           <td>Acciones</td>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       @foreach (var item in Model)
+	                    {
+                       <tr>
+                           <td>@item.cod_usuario</td>
+                           <td>@item.txt_user</td>
+                           <td>@item.txt_nombre</td>
+                           <td>@item.txt_apellido</td>
+                           <td>@item.nro_doc</td>
+                           <td>@item.Descripcion</td>
+                           <td>@item.sn_activo</td>
+                           <td>
+                               <a asp-controller="User" asp-action="Edit" asp-route-id="@item.cod_usuario" class="btn btn-outline-warning">Editar</a>
+                               <a asp-controller="User" asp-action="Delete" asp-route-id="@item.cod_usuario" class="btn btn-outline-danger">Eliminar</a>
+                           </td>
+                       </tr>
+	                    }
+                   </tbody>
+               </table>
+            }
+            else
+            {
+               <h4>No hay usuarios en el sistema</h4>
+            }
+       </div>
+</div>

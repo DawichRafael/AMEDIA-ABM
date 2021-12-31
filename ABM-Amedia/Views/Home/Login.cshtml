@@ -1,0 +1,36 @@
+﻿@model ABM_Amedia.Models.Users
+@{
+    ViewData["Title"] = "Login AMEDIA ABM";
+}
+<h4>Inicia al sistema!</h4>
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["message"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <form class="form-horizontal" method="post" asp-action="Login">
+                <div class="form-group">
+                    <label asp-for="txt_user" class="control-label"></label>
+                    <input asp-for="txt_user" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="txt_password" class="control-label"></label>
+                    <input asp-for="txt_password" type="password" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Loguear" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
